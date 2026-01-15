@@ -1,0 +1,56 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-overscroll-behavior: none;
+    overscroll-behavior: none;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.emojitext {
+    font-family: "Noto Color Emoji", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#app {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+img[emoji] {
+    aspect-ratio: 1/1;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+img[emoji][emoji-text="true"] {
+    aspect-ratio: 1/1;
+    height: 1em;
+    display: inline;
+}
+
+.page {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+@media screen and (max-width: 1060px) {
+    html {
+        font-size: 8px;
+    }
+}

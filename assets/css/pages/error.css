@@ -1,0 +1,39 @@
+#page-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#page-error section.hero {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    padding: var(--page-index-hero-padding);
+}
+
+#page-error section.hero * {
+    color: #fdfdfd;
+    gap: 1rem;
+}
+
+
+#page-error .hero .hero-title {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#page-error .hero .hero-title h1 {
+    font-family: 'Playfair', serif;
+    font-weight: 500;
+    font-size: 12rem;
+    line-height: 1;
+}

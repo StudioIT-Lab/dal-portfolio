@@ -1,0 +1,369 @@
+#background,
+#background * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+@keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -100;
+    overflow: hidden;
+}
+
+#background .background-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #435382;
+    background: -moz-radial-gradient(center, #435382 0%, #1D1F2B 100%);
+    background: -webkit-radial-gradient(center, #435382 0%, #1D1F2B 100%);
+    background: radial-gradient(ellipse at center, #435382 0%, #1D1F2B 100%);
+    z-index: -90;
+}
+
+#background .background-circle-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    z-index: -70;
+    -webkit-filter: blur(150px);
+    filter: blur(150px);
+
+
+    /* -webkit-animation: rotating 4800s linear infinite;
+    -moz-animation: rotating 4800s linear infinite;
+    -ms-animation: rotating 4800s linear infinite;
+    -o-animation: rotating 4800s linear infinite;
+    animation: rotating 4800s linear infinite; */
+}
+
+#background .background-circle-wrapper * {
+    transition: all 3s;
+}
+
+#background .background-circle-wrapper .background-circle {
+    position: absolute;
+    border-radius: 50%;
+}
+
+#background .background-circle-wrapper .background-circle[data-bg-circle="1"] {
+    height: 80vh;
+    aspect-ratio: 1/1;
+    top: 4vh;
+    left: -20vw;
+    background-color: #F903DC;
+    z-index: -55;
+}
+
+#background .background-circle-wrapper .background-circle[data-bg-circle="2"] {
+    height: 105vh;
+    aspect-ratio: 1/1;
+    top: -8vh;
+    left: calc(50vw - (105vh / 2));
+    background-color: #FC8200;
+    z-index: -60;
+}
+
+
+
+#background .background-circle-wrapper .background-circle[data-bg-circle="3"] {
+    height: 130vh;
+    aspect-ratio: 1/1;
+    top: 55vh;
+    left: 10vw;
+    background-color: #4200F8;
+    z-index: -75;
+}
+
+#background .background-circle-wrapper .background-circle[data-bg-circle="4"] {
+    height: 90vh;
+    aspect-ratio: 1/1;
+    top: 50vh;
+    left: 60vw;
+    background-color: #FB0B47;
+    z-index: -50;
+}
+
+#background .background-circle-wrapper .background-circle[data-bg-circle="5"] {
+    height: 65vh;
+    aspect-ratio: 1/1;
+    top: -15vh;
+    left: 75vw;
+    background-color: #D7D426;
+    z-index: -45;
+}
+
+#background .background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -40;
+
+    background: #435382;
+    background: -moz-radial-gradient(center, #00000011 0%, #00000044 100%);
+    background: -webkit-radial-gradient(center, #00000011 0%, #00000044 100%);
+    background: radial-gradient(ellipse at center, #00000011 0%, #00000044 100%);
+    -webkit-backdrop-filter: blur(100px);
+    backdrop-filter: blur(100px);
+}
+
+
+#background .background-effect-wrapper {
+    position: fixed;
+    top: -2px;
+    left: -2px;
+    width: calc(100vw + 4px);
+    height: calc(100vh + 4px);
+    overflow: hidden;
+    z-index: -30;
+    background: url('/assets/effects/grain2x.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    mix-blend-mode: color-dodge;
+    opacity: 0.2;
+}
+
+/* #background[data-bg-design] * {
+    -webkit-filter: none !important;
+    filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+} */
+
+
+/* DESIGN 2 */
+
+#background[data-bg-design="2"] .background-circle-wrapper .background-circle[data-bg-circle="1"] {
+    background-color: #03B3F9;
+    top: -50vh;
+    left: -20vw;
+}
+
+#background[data-bg-design="2"] .background-circle-wrapper .background-circle[data-bg-circle="2"] {
+    background-color: #edd019;
+    top: -30vh;
+    left: 30vw;
+}
+
+#background[data-bg-design="2"] .background-circle-wrapper .background-circle[data-bg-circle="3"] {
+    background-color: #fc9700;
+    top: 40vh;
+    left: -15vw;
+}
+
+#background[data-bg-design="2"] .background-circle-wrapper .background-circle[data-bg-circle="4"] {
+    background-color: #fb270b;
+    top: 60vh;
+    left: 60vw;
+}
+
+#background[data-bg-design="2"] .background-circle-wrapper .background-circle[data-bg-circle="5"] {
+    background-color: #98d300;
+    top: -4vh;
+    left: 80vw;
+
+}
+
+
+/* DESIGN 3 */
+
+#background[data-bg-design="3"] .background-circle-wrapper .background-circle[data-bg-circle="1"] {
+    background-color: #8603f9;
+    top: -35vh;
+    left: -18vw;
+}
+
+#background[data-bg-design="3"] .background-circle-wrapper .background-circle[data-bg-circle="2"] {
+    background-color: #fc00ac;
+    top: -25vh;
+    left: 25vw;
+}
+
+#background[data-bg-design="3"] .background-circle-wrapper .background-circle[data-bg-circle="3"] {
+    background-color: #9500F8;
+    top: 35vh;
+    left: -15vw;
+}
+
+#background[data-bg-design="3"] .background-circle-wrapper .background-circle[data-bg-circle="4"] {
+    background-color: #0B23FB;
+    top: 60vh;
+    left: 45vw;
+}
+
+#background[data-bg-design="3"] .background-circle-wrapper .background-circle[data-bg-circle="5"] {
+    background-color: #03CCF9;
+    top: -8vh;
+    left: 80vw;
+}
+
+
+
+
+/* DESIGN 4 */
+
+#background[data-bg-design="4"] .background-circle-wrapper .background-circle[data-bg-circle="1"] {
+    background-color: #f9038e;
+    top: -60vh;
+    left: -3vw;
+}
+
+#background[data-bg-design="4"] .background-circle-wrapper .background-circle[data-bg-circle="2"] {
+    background-color: #FC6000;
+    top: 8vh;
+    left: -6vw;
+}
+
+#background[data-bg-design="4"] .background-circle-wrapper .background-circle[data-bg-circle="3"] {
+    background-color: #F83200;
+    top: 20vh;
+    left: 25vw;
+}
+
+#background[data-bg-design="4"] .background-circle-wrapper .background-circle[data-bg-circle="4"] {
+    background-color: #fbb30b;
+    top: -50vh;
+    left: 60vw;
+}
+
+#background[data-bg-design="4"] .background-circle-wrapper .background-circle[data-bg-circle="5"] {
+    background-color: #FB0B47;
+    top: 5vh;
+    left: 80vw;
+}
+
+
+/* DESIGN -1 */
+
+/* #background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="1"] {
+    background-color: #ff6464;
+    top: -50vh;
+    left: -3vw;
+}
+
+#background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="2"] {
+    background-color: #fc5800;
+    top: 30vh;
+    left: -10vw;
+}
+
+#background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="3"] {
+    background-color: #ff0101;
+    top: 20vh;
+    left: 18vw;
+}
+
+#background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="4"] {
+    background-color: #f13a3a;
+    top: -50vh;
+    left: 55vw;
+}
+
+#background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="5"] {
+    background-color: #de3a3a;
+    top: 40vh;
+    left: 70vw;
+} */
+
+
+#background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="1"] {
+    background-color: #43538200;
+    top: calc(50vh - (80vh /2));
+    left: calc(50vw - (80vh /2));
+}
+
+#background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="2"] {
+    background-color: #43538200;
+    top: calc(50vh - (105vh /2));
+    left: calc(50vw - (105vh /2));
+}
+
+#background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="3"] {
+    background-color: #43538200;
+    top: calc(50vh - (130vh /2));
+    left: calc(50vw - (130vh /2));
+}
+
+#background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="4"] {
+    background-color: #43538200;
+    top: calc(50vh - (90vh /2));
+    left: calc(50vw - (90vh /2));
+}
+
+#background[data-bg-design="-1"] .background-circle-wrapper .background-circle[data-bg-circle="5"] {
+    background-color: #43538200;
+    top: calc(50vh - (65vh /2));
+    left: calc(50vw - (65vh /2));
+}
+
+
+
+
+
+
+/* DESIGN -2 */
+
+
+#background[data-bg-design="-2"] .background-circle-wrapper .background-circle[data-bg-circle="1"] {
+    background-color: #ff000033;
+    top: calc(50vh - (80vh /2));
+    left: calc(50vw - (80vh /2));
+}
+
+#background[data-bg-design="-2"] .background-circle-wrapper .background-circle[data-bg-circle="2"] {
+    background-color: #ff000033;
+    top: calc(50vh - (105vh /2));
+    left: calc(50vw - (105vh /2));
+}
+
+#background[data-bg-design="-2"] .background-circle-wrapper .background-circle[data-bg-circle="3"] {
+    background-color: #ff000033;
+    top: calc(50vh - (130vh /2));
+    left: calc(50vw - (130vh /2));
+}
+
+#background[data-bg-design="-2"] .background-circle-wrapper .background-circle[data-bg-circle="4"] {
+    background-color: #ff000033;
+    top: calc(50vh - (90vh /2));
+    left: calc(50vw - (90vh /2));
+}
+
+#background[data-bg-design="-2"] .background-circle-wrapper .background-circle[data-bg-circle="5"] {
+    background-color: #ff000033;
+    top: calc(50vh - (65vh /2));
+    left: calc(50vw - (65vh /2));
+}

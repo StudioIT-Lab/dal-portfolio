@@ -1,0 +1,2 @@
+assets/emojis/color/*.svg filter=lfs diff=lfs merge=lfs -text
+assets/emojis/flat/*.svg filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Allow requests to /assets and /api to pass through
+RewriteCond %{REQUEST_URI} ^/(assets|api|pages) [NC]
+RewriteRule ^ - [L]
+
+# Redirect all other requests to index.html (SPA entry point)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html

@@ -1,0 +1,284 @@
+:root {
+    --page-index-hero-padding: 3rem
+}
+
+#page-index {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#page-index section.hero {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    padding: var(--page-index-hero-padding);
+}
+
+#page-index section.hero * {
+    color: #fdfdfd;
+    gap: 1rem;
+}
+
+#page-index section.hero .spacer {
+    height: 16rem;
+    width: 100%;
+}
+
+#page-index .hero .hero-title {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#page-index .hero .hero-title h1 {
+    font-family: 'Playfair', serif;
+    font-weight: 500;
+    font-size: 12rem;
+    line-height: 1;
+}
+
+#page-index .hero .scrolly-wrapper {
+    position: absolute;
+    bottom: var(--page-index-hero-padding);
+    left: var(--page-index-hero-padding);
+    width: calc(100vw - (var(--page-index-hero-padding) * 2));
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+#page-index .hero .scrolly-text {
+    font-family: 'Poppins', 'Arial', sans-serif;
+    font-weight: 100;
+    font-size: 3rem;
+    line-height: 1;
+}
+
+#page-index .hero .scrolly-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+
+#page-index section {
+    height: 100vh;
+    width: 100vw;
+    /* border: 5px solid black; */
+    position: relative;
+}
+
+
+
+#page-index div.leftcolumn {
+    position: absolute;
+    padding: 4rem 2rem 4rem 4rem;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#page-index div.leftcolumntop {
+    position: absolute;
+    padding: 4rem 2rem 0.6rem 4rem;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+#page-index div.leftcolumnbottom {
+    position: absolute;
+    padding: 0.6rem 2rem 4rem 4rem;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#page-index div.rightcolumn {
+    position: absolute;
+    padding: 4rem 4rem 4rem 2rem;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#page-index div.rightcolumntop {
+    position: absolute;
+    padding: 4rem 4rem 0.6rem 2rem;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+#page-index div.rightcolumnbottom {
+    position: absolute;
+    padding: 0.6rem 4rem 4rem 2rem;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#page-index div.leftcolumn img,
+#page-index .rightcolumn img {
+    position: relative;
+    max-width: 100%;
+}
+
+
+#page-index h2 {
+    font-family: 'Playfair', serif;
+    font-weight: 500;
+    font-size: 6rem;
+    color: #fdfdfd;
+}
+
+#page-index .discover-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+}
+
+#page-index .discover-button p {
+    font-family: 'Poppins', 'Arial', sans-serif;
+    font-weight: 100;
+    font-size: 2.5rem;
+    color: #fdfdfd;
+}
+
+#page-index .discover-button img {
+    transform: rotate(-90deg);
+    width: 2rem;
+
+}
+
+
+@media screen and (max-width: 1060px) {
+
+    #page-index .hero .hero-title {
+        margin-top: -8rem;
+    }
+
+    #page-index section,
+    #page-index section.hero {
+        height: 90vh;
+    }
+
+    #page-index section.hero .spacer {
+        height: 8rem;
+    }
+
+    #page-index .hero .scrolly-wrapper {
+        margin-bottom: 16rem;
+        gap: 2rem;
+    }
+
+
+    #page-index .hero .scrolly-text {
+        font-size: 5rem;
+    }
+
+    #page-index .hero .scrolly-button img {
+        height: 2rem;
+    }
+
+    #page-index div.leftcolumn,
+    #page-index div.rightcolumn {
+        padding: 2rem 4rem 2rem 4rem;
+        top: 25%;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #page-index div.leftcolumntop,
+    #page-index div.rightcolumntop {
+        padding: 4rem 4rem 2rem 4rem;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+    }
+
+    #page-index div.leftcolumnbottom,
+    #page-index div.rightcolumnbottom {
+        padding: 2rem 4rem 4rem 4rem;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    #page-index h2 {
+        font-size: 6.5rem;
+    }
+
+    #page-index .discover-button {
+        gap: 2rem;
+    }
+
+    #page-index .discover-button p {
+
+        font-size: 4rem;
+    }
+
+    #page-index .discover-button img {
+        width: 3.5rem;
+
+    }
+
+}
