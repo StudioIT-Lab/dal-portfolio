@@ -199,15 +199,12 @@
 }
 
 
+
+
 @media screen and (max-width: 1060px) {
 
     #page-index .hero .hero-title {
         margin-top: -8rem;
-    }
-
-    #page-index section,
-    #page-index section.hero {
-        height: 90vh;
     }
 
     #page-index section.hero .spacer {
@@ -280,6 +277,16 @@
     #page-index .discover-button img {
         width: 3.5rem;
 
+    }
+
+}
+
+
+@media screen and (max-width:780px) {
+
+    #page-index section,
+    #page-index section.hero {
+        height: 90vh;
     }
 
 }
