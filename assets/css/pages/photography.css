@@ -1,0 +1,63 @@
+#page-photography {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
+#page-photography header {
+    height: var(--header-height);
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#page-photography main {
+    height: calc(100vh - var(--header-height));
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    display: grid;
+    /* create responsive columns that keep card width consistent */
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    justify-items: center;
+    align-content: start;
+    padding: 2rem;
+    gap: 3rem;
+    overflow: auto;
+}
+
+#page-photography .projectcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+#page-photography .projectcard * {
+    font-family: 'Playfair', serif;
+    font-weight: 500;
+    line-height: 1;
+    color: #fff;
+}
+
+#page-photography .projectcard .projectteaser {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 0.5rem;
+}
+
+#page-photography .projectcard .projecttitle {
+    font-size: 2.2rem;
+}
+
+#page-photography .projectcard .projectyear {
+    font-size: 1.2rem;
+}

@@ -7,6 +7,10 @@
     overscroll-behavior: none;
 }
 
+:root {
+    --header-height: 3.5rem
+}
+
 html {
     font-size: 16px;
 }
@@ -16,6 +20,8 @@ body {
     width: 100vw;
     min-height: 100vh;
 }
+
+
 
 .emojitext {
     font-family: "Noto Color Emoji", sans-serif;
