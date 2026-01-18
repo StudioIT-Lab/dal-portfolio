@@ -2,6 +2,7 @@ let scrollTimeout = null;
 
 
 function handleScrollListener() {
+    updateBackground();
     document.addEventListener('scroll', () => {
         const page = document.querySelector('.page')?.id;
         if (page === 'page-index') {

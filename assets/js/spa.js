@@ -1,14 +1,59 @@
 import { loadEmojis } from "./emoji.js";
 import { pageInit } from "./page-handlers.js";
+import { checkProject } from "./projectmanagement.js";
+
+
+async function parseUrlToFile(path) {
+    let file = '404';
+    if (path.endsWith('/')) {
+        path = path.slice(0, -1);
+    }
+
+    if (path.startsWith('/')) path = path.slice(1);
+
+    let segments = path.split('/');
+    if (segments.length == 1) {
+        switch (segments[0]) {
+            case '':
+                file = 'index';
+                break;
+            case 'photography':
+            case 'programming':
+            case 'design':
+                file = 'projects';
+                break;
+            default:
+                file = '404';
+                return;
+        }
+    }
+
+    if (segments.length > 1) {
+        switch (segments[0]) {
+            case 'photography':
+            case 'programming':
+            case 'design':
+                file = await checkProject(segments[1]) ? 'projectdetail' : '404';
+                break;
+            default:
+                file = '404';
+                break;
+        }
+    }
+
+    return file;
+
+}
 
 
 async function loadPage(path, scrollY = 0) {
-    if (path === '/') path = '/index';
+    let file = await parseUrlToFile(path);
 
-    console.log(`loading '${path}'`);
+
+    console.log(`loading '${file}'`);
 
     try {
-        const res = await fetch(`/pages${path}.html`);
+        const res = await fetch(`/pages/${file}.html`);
         if (!res.ok) throw new Error('Page not found');
         const html = await res.text();
         app.innerHTML = html;
@@ -27,7 +72,7 @@ async function loadPage(path, scrollY = 0) {
 
     try {
         loadEmojis();
-        pageInit();
+        await pageInit();
     } catch (error) {
         console.warn(error);
     }
