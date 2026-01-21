@@ -11,7 +11,7 @@
 #page-photography header {
     height: var(--header-height);
     width: 100vw;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
 }
@@ -19,7 +19,7 @@
 #page-photography main {
     height: calc(100vh - var(--header-height));
     width: 100%;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
 

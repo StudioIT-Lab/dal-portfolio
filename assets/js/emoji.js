@@ -8,7 +8,8 @@ function loadEmojis() {
         replacement.setAttribute('emoji-text', textElements.includes(el.parentNode.tagName.toLowerCase()));
 
         replacement.src = `/assets/emojis/color/${el.innerHTML.trim()}.svg`;
-        replacement.alt = el.getAttribute('alt') || `{${el.innerHTML.trim()}}`;
+        // replacement.alt = el.getAttribute('alt') || `{${el.innerHTML.trim()}}`;
+        replacement.alt = '';
         replacement.loading = 'lazy';
 
         el.parentNode.replaceChild(replacement, el);

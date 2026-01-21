@@ -2,3 +2,4 @@ User-agent: *
 Disallow: /pages
 Disallow: /assets
 Disallow: /api
+Disallow: /

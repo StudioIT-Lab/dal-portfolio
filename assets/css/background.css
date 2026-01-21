@@ -150,11 +150,20 @@
     height: calc(100vh + 4px);
     overflow: hidden;
     z-index: -30;
-    background: url('/assets/effects/grain2x.png');
     background-size: cover;
     background-repeat: no-repeat;
     mix-blend-mode: color-dodge;
     opacity: 0.2;
+}
+
+#background .background-effect-wrapper {
+    background-image: url('/assets/effects/grain2x.avif');
+}
+
+@supports not (background-image: url("dummy.avif")) {
+    #background .background-effect-wrapper {
+        background-image: url('/assets/effects/grain2x.webp');
+    }
 }
 
 /* #background[data-bg-design] * {
