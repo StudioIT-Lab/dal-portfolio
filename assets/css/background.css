@@ -50,6 +50,7 @@
 }
 
 #background .background-circle-wrapper {
+    will-change: filter;
     position: absolute;
     top: 0;
     left: 0;
@@ -73,6 +74,7 @@
 }
 
 #background .background-circle-wrapper .background-circle {
+    will-change: transform, opacity, filter, background-color !important;
     position: absolute;
     border-radius: 50%;
 }
@@ -125,6 +127,7 @@
 }
 
 #background .background-blur {
+    will-change: filter, opacity;
     position: absolute;
     top: 0;
     left: 0;
