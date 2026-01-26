@@ -13,6 +13,6 @@ RewriteRule ^ index.html
 
 
 
-<FilesMatch "\.(css|js|svg|png|webp|avif)$">
-    Header set Cache-Control "public, max-age=2592000"
-</FilesMatch>
+# <FilesMatch "\.(css|js|svg|png|webp|avif)$">
+#     Header set Cache-Control "public, max-age=2592000"
+# </FilesMatch>

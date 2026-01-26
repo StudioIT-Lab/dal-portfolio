@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    will-change: filter, top, left, right;
 }
 
 
@@ -50,7 +51,7 @@
 }
 
 #background .background-circle-wrapper {
-    will-change: filter;
+    will-change: filter, -webkit-filter, backdrop-filter, -webkit-backdrop-filter;
     position: absolute;
     top: 0;
     left: 0;
@@ -58,8 +59,8 @@
     height: 100%;
     overflow: visible;
     z-index: -70;
-    -webkit-filter: blur(150px);
-    filter: blur(150px);
+    -webkit-filter: blur(250px);
+    filter: blur(250px);
 
 
     /* -webkit-animation: rotating 4800s linear infinite;
@@ -140,8 +141,8 @@
     background: -moz-radial-gradient(center, #00000011 0%, #00000044 100%);
     background: -webkit-radial-gradient(center, #00000011 0%, #00000044 100%);
     background: radial-gradient(ellipse at center, #00000011 0%, #00000044 100%);
-    -webkit-backdrop-filter: blur(100px);
-    backdrop-filter: blur(100px);
+    /* -webkit-backdrop-filter: blur(100px);
+    backdrop-filter: blur(100px); */
 }
 
 
@@ -149,14 +150,35 @@
     position: fixed;
     top: -2px;
     left: -2px;
-    width: calc(100vw + 4px);
-    height: calc(100vh + 4px);
+    min-width: calc(100vw + 4px);
+    min-height: calc(100vh + 4px);
     overflow: hidden;
     z-index: -30;
     background-size: cover;
     background-repeat: no-repeat;
     mix-blend-mode: color-dodge;
     opacity: 0.2;
+}
+
+
+#background .background-mobile-wrapper {
+    position: fixed;
+    top: -2px;
+    left: -2px;
+    width: calc(100vw + 4px);
+    height: calc(100vh + 4px);
+    z-index: -80;
+    display: none;
+}
+
+#background .background-mobile-wrapper img {
+    position: fixed;
+    top: -2px;
+    left: -2px;
+    width: calc(100vw + 4px);
+    height: calc(100vh + 4px);
+    opacity: 0;
+    transition: opacity 3s;
 }
 
 #background .background-effect-wrapper {
@@ -378,4 +400,39 @@
     background-color: #ff000033;
     top: calc(50vh - (65vh /2));
     left: calc(50vw - (65vh /2));
+}
+
+@media screen and (max-width: 1060px) {
+    #background .background-circle-wrapper {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+    }
+
+    #background .background-circle-wrapper {
+        display: none;
+    }
+
+    #background .background-mobile-wrapper {
+        display: block;
+    }
+
+    #background[data-bg-design="1"] .background-mobile-wrapper img[data-bg-image="1"] {
+        opacity: 1;
+    }
+
+    #background[data-bg-design="2"] .background-mobile-wrapper img[data-bg-image="2"] {
+        opacity: 1;
+    }
+
+    #background[data-bg-design="3"] .background-mobile-wrapper img[data-bg-image="3"] {
+        opacity: 1;
+    }
+
+    #background[data-bg-design="4"] .background-mobile-wrapper img[data-bg-image="4"] {
+        opacity: 1;
+    }
+
+    #background[data-bg-design="-2"] .background-mobile-wrapper img[data-bg-image="-2"] {
+        opacity: 1;
+    }
 }
