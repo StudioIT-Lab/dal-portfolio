@@ -1,0 +1,11 @@
+[
+    {
+        "version": "1.0.0",
+        "title": "Version ###VERSION###",
+        "date": "2025-02-23",
+        "changes": [
+            "###T###Rendering",
+            "Set default background color to anthracite to prevent visual glitches."
+        ]
+    }
+]

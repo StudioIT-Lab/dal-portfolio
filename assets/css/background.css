@@ -7,6 +7,11 @@
 }
 
 
+body {
+    background-color: #1D1F2B;
+}
+
+
 
 @keyframes rotating {
     from {
@@ -36,6 +41,7 @@
     z-index: -100;
     overflow: hidden;
 }
+
 
 #background .background-gradient {
     position: absolute;
