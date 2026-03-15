@@ -3,47 +3,7 @@ import { pageInit } from "./page-handlers.js";
 import { checkProject } from "./projectmanagement.js";
 
 
-async function parseUrlToFile(path) {
-    let file = '404';
-    if (path.endsWith('/')) {
-        path = path.slice(0, -1);
-    }
-
-    if (path.startsWith('/')) path = path.slice(1);
-
-    let segments = path.split('/');
-    if (segments.length == 1) {
-        switch (segments[0]) {
-            case '':
-                file = 'index';
-                break;
-            case 'photography':
-            case 'programming':
-            case 'design':
-                file = 'projects';
-                break;
-            default:
-                file = '404';
-                return;
-        }
-    }
-
-    if (segments.length > 1) {
-        switch (segments[0]) {
-            case 'photography':
-            case 'programming':
-            case 'design':
-                file = await checkProject(segments[1]) ? 'projectdetail' : '404';
-                break;
-            default:
-                file = '404';
-                break;
-        }
-    }
-
-    return file;
-
-}
+async function parseUrlToFile(path) { let file = '404'; if (path.endsWith('/')) { path = path.slice(0, -1); } if (path.startsWith('/')) path = path.slice(1); let segments = path.split('/'); if (segments.length == 1) { switch (segments[0]) { case '': file = 'index'; break; case 'photography': case 'programming': case 'design': file = 'projects'; break; default: file = '404'; return; } } if (segments.length > 1) { switch (segments[0]) { case 'photography': case 'programming': case 'design': file = await checkProject(segments[1]) ? 'projectdetail' : '404'; break; default: file = '404'; break; } } return file; }
 
 
 async function loadPage(path, animation = 'fadeinleft', scrollY = 0, initialLoad = false) {
@@ -91,7 +51,7 @@ async function loadPage(path, animation = 'fadeinleft', scrollY = 0, initialLoad
         appContainer.setAttribute('data-animation', animation);
         updateCanonical(`https://damian-luginbuehl.ch${path}`);
 
-        // restore scroll
+        /**  restore scroll*/
         window.scrollTo(0, scrollY);
 
 
@@ -115,23 +75,35 @@ async function loadPage(path, animation = 'fadeinleft', scrollY = 0, initialLoad
 }
 
 function navigateTo(url) {
+    let path = window.location.pathname;
+    if (path.endsWith('/')) {
+        path = path.slice(0, -1);
+    }
+    if (!url.startsWith('/')) {
+        path = `${path}/${url}`;
+    }
+    else {
+        path = url;
+    }
     const current = history.state || {};
     history.replaceState({ ...current, scrollY: window.scrollY, idx: window._historyIdx }, null, window.location.pathname);
 
     const nextIdx = (window._historyIdx ?? 0) + 1;
-    history.pushState({ idx: nextIdx, scrollY: 0 }, null, url);
+    history.pushState({ idx: nextIdx, scrollY: 0 }, null, path);
     window._historyIdx = nextIdx;
-
     loadPage(window.location.pathname, 'fadeinright', 0);
 }
 
-// handle links
-document.addEventListener('click', e => {
-    if (e.target.matches('[data-link]')) {
+/**  handle links*/
+document.addEventListener('click', (e) => {
+
+    if (e.target.tagName == 'A' && e.target.hasAttribute('data-link')) {
         e.preventDefault();
-        navigateTo(new URL(e.target.href).pathname);
+        navigateTo(e.target.getAttribute('data-link'));
+        return;
     }
 });
+
 
 window.addEventListener('popstate', (event) => {
     const newIdx = event.state?.idx;
@@ -156,6 +128,8 @@ function updateCanonical(url) {
     }
     canonical.setAttribute('href', url);
 }
+
+
 
 
 export { loadPage, updateCanonical };

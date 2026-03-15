@@ -1,0 +1,58 @@
+:root {
+    /* Scrollbars */
+    --l-sb-idle: #555555;
+    --l-sb-hover: #666667;
+    --l-sb-idle: #cccccc77;
+    --l-sb-hover: #aaaaaa
+}
+
+/* Scrollbar Settings */
+/* Bar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--l-sb-idle);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--l-sb-hover);
+}
+
+::-webkit-scrollbar-button:single-button {
+    background-color: transparent;
+    display: block;
+    border-style: solid;
+    height: 13px;
+    width: 16px;
+}
+
+/* Up */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    border-width: 0 5px 5px 5px;
+    border-radius: 3px;
+    border-color: transparent transparent var(--l-sb-idle) transparent;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+    border-color: transparent transparent var(--l-sb-hover) transparent;
+}
+
+/* Down */
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    border-width: 5px 5px 0 5px;
+    border-radius: 3px;
+    border-color: var(--l-sb-idle) transparent transparent transparent;
+}
+
+::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+    border-color: var(--l-sb-hover) transparent transparent transparent;
+}

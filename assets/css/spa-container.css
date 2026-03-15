@@ -21,6 +21,16 @@ body {
     min-height: 100vh;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a * {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+}
+
 
 
 .emojitext {
