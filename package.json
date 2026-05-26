@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit",
+    "watch": "tsc --watch"
+  }
+}
