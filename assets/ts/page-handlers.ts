@@ -1,5 +1,5 @@
 import { handleScrollListener } from "./scroll.js";
-import { checkProject, loadProject, loadOverview } from "./projectmanagement.js";
+import { pageOverview } from "./page-overview.js";
 
 async function pageInit() {
     let pageType = '';
@@ -47,8 +47,8 @@ async function pageInit() {
     const slug = segments[1];
 
     if (slug) {
-        if (pageType === 'project' && await checkProject(slug)) {
-            await loadProject(slug);
+        if (pageType === 'project' && await pageOverview.check.project(slug)) {
+            await pageOverview.load.project(slug);
         }
         else if (pageType === 'project') {
             bg.dataset.bgDesign = '-2';
@@ -56,7 +56,8 @@ async function pageInit() {
 
     }
     else if (pageType === 'project') {
-        loadOverview(parent);
+        pageOverview.load.overview(parent);
+
     }
 }
 

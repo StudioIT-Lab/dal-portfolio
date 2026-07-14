@@ -1,0 +1,35 @@
+:root {
+    --header-height: 5rem
+}
+
+
+.page>header {
+    height: var(--header-height);
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 2rem 4rem 1rem 4rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.page>header .menu-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.page>header #back-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transform: rotate(90deg);
+    
+}

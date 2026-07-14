@@ -11,9 +11,12 @@
     user-select: none;
 }
 
+
+
 #page-index section.hero {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - var(--header-height));
+    margin-top: var(--header-height);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +43,7 @@
 }
 
 #page-index .hero .hero-title h1 {
-    font-family: 'Playfair', serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 500;
     font-size: 12rem;
     line-height: 1;
@@ -70,7 +73,10 @@
     background-color: transparent;
     outline: none;
     border: none;
+    cursor: pointer;
 }
+
+
 
 
 #page-index section {
@@ -167,7 +173,7 @@
 
 
 #page-index h2 {
-    font-family: 'Playfair', serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 500;
     font-size: 6rem;
     color: #fdfdfd;

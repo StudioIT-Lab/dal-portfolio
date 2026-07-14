@@ -1,35 +1,44 @@
 import { loadEmojis } from "./emoji.js";
 import { pageInit } from "./page-handlers.js";
-import { checkProject } from "./projectmanagement.js";
-async function parseUrlToFile(path) { let file = '404'; if (path.endsWith('/')) {
-    path = path.slice(0, -1);
-} if (path.startsWith('/'))
-    path = path.slice(1); let segments = path.split('/'); if (segments.length == 1) {
-    switch (segments[0]) {
-        case '':
-            file = 'index';
-            break;
-        case 'photography':
-        case 'programming':
-        case 'design':
-            file = 'projects';
-            break;
-        default:
-            file = '404';
-            return;
+import { pageOverview } from "./page-overview.js";
+async function parseUrlToFile(path) {
+    let file = '404';
+    if (path.endsWith('/')) {
+        path = path.slice(0, -1);
     }
-} if (segments.length > 1) {
-    switch (segments[0]) {
-        case 'photography':
-        case 'programming':
-        case 'design':
-            file = segments[1] && await checkProject(segments[1]) ? 'projectdetail' : '404';
-            break;
-        default:
-            file = '404';
-            break;
+    if (path.startsWith('/'))
+        path = path.slice(1);
+    let segments = path.split('/');
+    console.log(`URL Segments: ${segments}`);
+    if (segments.length == 1) {
+        switch (segments[0]) {
+            case '':
+                file = 'index';
+                break;
+            case 'photography':
+            case 'programming':
+            case 'design':
+                file = 'projects';
+                break;
+            default:
+                file = '404';
+                return;
+        }
     }
-} return file; }
+    if (segments.length > 1) {
+        switch (segments[0]) {
+            case 'photography':
+            case 'programming':
+            case 'design':
+                file = segments[1] && await pageOverview.check.project(segments[1]) ? 'projectdetail' : '404';
+                break;
+            default:
+                file = '404';
+                break;
+        }
+    }
+    return file;
+}
 async function loadPage(path, animation = 'fadeinleft', scrollY = 0, initialLoad = false) {
     if (path.endsWith('/'))
         path = path.slice(0, -1);
@@ -85,7 +94,8 @@ async function loadPage(path, animation = 'fadeinleft', scrollY = 0, initialLoad
         console.warn(error);
     }
 }
-function navigateTo(url) {
+function navigateTo(url, back = false) {
+    let animation = back ? 'fadeinleft' : 'fadeinright';
     let path = window.location.pathname;
     if (path.endsWith('/')) {
         path = path.slice(0, -1);
@@ -101,17 +111,22 @@ function navigateTo(url) {
     const nextIdx = (window._historyIdx ?? 0) + 1;
     history.pushState({ idx: nextIdx, scrollY: 0 }, "", path);
     window._historyIdx = nextIdx;
-    loadPage(window.location.pathname, 'fadeinright', 0);
+    loadPage(window.location.pathname, animation, 0);
 }
 /**  handle links*/
 document.addEventListener('click', (e) => {
     if (!(e.target instanceof HTMLElement))
         return;
-    if (e.target.tagName == 'A' && e.target.hasAttribute('data-link')) {
+    if (e.target.tagName == 'A' && e.target.hasAttribute('data-link') && e.target.id != 'back-button') {
         e.preventDefault();
         const url = e.target.getAttribute('data-link');
         if (url)
             navigateTo(url);
+        return;
+    }
+    if (e.target.tagName == 'A' && e.target.id == 'back-button') {
+        e.preventDefault();
+        window.history.back();
         return;
     }
 });
