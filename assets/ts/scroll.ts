@@ -20,6 +20,9 @@ function handleScrollListener() {
 }
 
 function updateBackground() {
+    if (document.querySelector<HTMLElement>('#menu')!.style.display != 'none') {
+        return;
+    }
     const totalHeight = document.body.scrollHeight;
     const bgNumber = Math.round((window.scrollY / totalHeight) * 4) + 1;
     const bg = document.querySelector<HTMLElement>('#background');

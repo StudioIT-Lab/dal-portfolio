@@ -3,6 +3,7 @@ import { pageInit } from "./page-handlers.js";
 import { pageOverview } from "./page-overview.js";
 let menuOpen = false;
 let menuScrollPos = 0;
+let menuBgDesign = '0';
 async function parseUrlToFile(path) {
     let file = '404';
     if (path.endsWith('/')) {
@@ -68,6 +69,7 @@ async function loadPage(path, animation = 'fadeinleft', scrollY = 0, initialLoad
         await new Promise(r => setTimeout(r, 710));
         if (menuOpen) {
             menuOpen = false;
+            document.querySelector('#background').dataset.animationSpeed = 'default';
             appContainer.querySelector('#menu').style.display = 'none';
             appContainer.querySelector('.page>main').style.display = '';
         }
@@ -151,14 +153,19 @@ document.addEventListener('click', async (e) => {
     else if (e.target.tagName == 'BUTTON' && e.target.id == 'menu-button') {
         e.preventDefault();
         let appContainer = document.querySelector('#app');
+        let background = document.querySelector('#background');
         if (!menuOpen) {
             menuOpen = true;
             menuScrollPos = window.scrollY;
+            menuBgDesign = String(background.dataset.bgDesign);
             appContainer.dataset.animation = 'fadeoutdown';
             await new Promise(r => setTimeout(r, 710));
             appContainer.querySelector('.page>main').style.display = 'none';
             appContainer.querySelector('#menu').style.display = '';
             appContainer.dataset.animation = 'fadeindown';
+            background.dataset.animationSpeed = 'fast';
+            background.dataset.bgDesign = '-1';
+            console.log('now!');
         }
         else {
             menuOpen = false;
@@ -166,6 +173,8 @@ document.addEventListener('click', async (e) => {
             await new Promise(r => setTimeout(r, 710));
             appContainer.querySelector('#menu').style.display = 'none';
             appContainer.querySelector('.page>main').style.display = '';
+            background.dataset.bgDesign = menuBgDesign;
+            background.dataset.animationSpeed = 'default';
             appContainer.dataset.animation = 'fadeinup';
             window.scrollTo(0, menuScrollPos);
         }
