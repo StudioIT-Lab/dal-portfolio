@@ -28,19 +28,28 @@
     <script type="module" src="/assets/js/page-handlers.js"></script>
     <script type="module" defer src="/assets/js/init.js"></script>
     <script type="module" src="/assets/js/scroll.js"></script>
-    <script type="module" src="/assets/js/projectmanagement.js"></script>
+    <script type="module" src="/assets/js/page-overview.js"></script>
 
     <!-- Pages CSS -->
     <link rel="stylesheet" href="/assets/css/pages/error.css">
     <link rel="stylesheet" href="/assets/css/pages/index.css">
     <link rel="stylesheet" href="/assets/css/pages/projects.css">
+    <link rel="stylesheet" href="/assets/css/pages/projectdetail.css">
     <link rel="stylesheet" href="/assets/css/scrollbar.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/header-menu.css">
 </head>
 
 <body>
 
-
+    <header>
+        <a id="back-button" style="display: none;" aria-label="Continue to front" href="../" data-link="../">
+            <img src="/assets/img/icons/arrow.svg" aria-label="Go back" alt="">
+        </a>
+        <div></div>
+        <button id="menu-button">
+            <img src="/assets/img/icons/menu.svg" aria-label="Open the menu" alt="">
+        </button>
+    </header>
     <div id="app" data-animation="true">
 
 

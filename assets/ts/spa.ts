@@ -9,12 +9,16 @@ declare global {
     }
 }
 
+let menuOpen = false;
+let menuScrollPos = 0;
+
 
 async function parseUrlToFile(path: string) {
     let file = '404';
     if (path.endsWith('/')) {
         path = path.slice(0, -1);
-    } if (path.startsWith('/')) path = path.slice(1);
+    }
+    if (path.startsWith('/')) path = path.slice(1);
     let segments = path.split('/');
 
     console.log(`URL Segments: ${segments}`);
@@ -22,12 +26,16 @@ async function parseUrlToFile(path: string) {
         switch (segments[0]) {
             case '': file = 'index';
                 break;
-            case 'photography': case 'programming': case 'design': file = 'projects';
+            case 'photography':
+            case 'programming':
+            case 'design':
+                file = 'projects';
                 break;
             default: file = '404';
-                return;
+                break;
         }
-    } if (segments.length > 1) {
+    }
+    else if (segments.length > 1) {
         switch (segments[0]) {
             case 'photography':
             case 'programming':
@@ -75,7 +83,13 @@ async function loadPage(path: string, animation: string = 'fadeinleft', scrollY:
                 break;
         }
         appContainer.setAttribute('data-animation', exitAnimation);
+
         await new Promise(r => setTimeout(r, 710));
+        if (menuOpen) {
+            menuOpen = false;
+            appContainer!.querySelector<HTMLElement>('#menu')!.style.display = 'none';
+            appContainer!.querySelector<HTMLElement>('.page>main')!.style.display = '';
+        }
     }
     else {
         animation = 'fadeinup';
@@ -85,6 +99,7 @@ async function loadPage(path: string, animation: string = 'fadeinleft', scrollY:
 
 
     try {
+
         const res = await fetch(`/pages/${file}.html`);
         if (!res.ok) throw new Error('Page not found');
         const html = await res.text();
@@ -108,6 +123,13 @@ async function loadPage(path: string, animation: string = 'fadeinleft', scrollY:
         updateCanonical(``);
     }
 
+    if (file == 'index') {
+        document.querySelector<HTMLElement>('body>header>#back-button')!.style.display = 'none';
+    }
+    else {
+        document.querySelector<HTMLElement>('body>header>#back-button')!.style.display = '';
+    }
+
     try {
         loadEmojis();
         await pageInit();
@@ -116,7 +138,7 @@ async function loadPage(path: string, animation: string = 'fadeinleft', scrollY:
     }
 }
 
-function navigateTo(url: string, back: boolean = false) {
+async function navigateTo(url: string, back: boolean = false) {
     let animation = back ? 'fadeinleft' : 'fadeinright';
 
     let path = window.location.pathname;
@@ -139,7 +161,7 @@ function navigateTo(url: string, back: boolean = false) {
 }
 
 /**  handle links*/
-document.addEventListener('click', (e: Event) => {
+document.addEventListener('click', async (e: Event) => {
 
     if (!(e.target instanceof HTMLElement)) return;
 
@@ -150,11 +172,44 @@ document.addEventListener('click', (e: Event) => {
         return;
     }
 
-    if (e.target.tagName == 'A' && e.target.id == 'back-button') {
+    else if (e.target.tagName == 'A' && e.target.id == 'back-button') {
         e.preventDefault();
-        window.history.back();
+        const count = Number(sessionStorage.getItem('nav-count') || 0);
 
+
+        if ((window._historyIdx ?? 0) > 0) {
+            window.history.back();
+        } else {
+            navigateTo('/', true);
+        }
         return;
+    }
+
+    else if (e.target.tagName == 'BUTTON' && e.target.id == 'menu-button') {
+        e.preventDefault();
+
+        let appContainer = document.querySelector<HTMLElement>('#app');
+
+
+
+        if (!menuOpen) {
+            menuOpen = true;
+            menuScrollPos = window.scrollY;
+            appContainer!.dataset.animation = 'fadeoutdown';
+            await new Promise(r => setTimeout(r, 710));
+            appContainer!.querySelector<HTMLElement>('.page>main')!.style.display = 'none';
+            appContainer!.querySelector<HTMLElement>('#menu')!.style.display = '';
+            appContainer!.dataset.animation = 'fadeindown';
+        }
+        else {
+            menuOpen = false;
+            appContainer!.dataset.animation = 'fadeoutup';
+            await new Promise(r => setTimeout(r, 710));
+            appContainer!.querySelector<HTMLElement>('#menu')!.style.display = 'none';
+            appContainer!.querySelector<HTMLElement>('.page>main')!.style.display = '';
+            appContainer!.dataset.animation = 'fadeinup';
+            window.scrollTo(0, menuScrollPos);
+        }
     }
 });
 
@@ -182,6 +237,7 @@ function updateCanonical(url: string) {
     }
     canonical.setAttribute('href', url);
 }
+
 
 
 

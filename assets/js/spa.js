@@ -1,6 +1,8 @@
 import { loadEmojis } from "./emoji.js";
 import { pageInit } from "./page-handlers.js";
 import { pageOverview } from "./page-overview.js";
+let menuOpen = false;
+let menuScrollPos = 0;
 async function parseUrlToFile(path) {
     let file = '404';
     if (path.endsWith('/')) {
@@ -22,10 +24,10 @@ async function parseUrlToFile(path) {
                 break;
             default:
                 file = '404';
-                return;
+                break;
         }
     }
-    if (segments.length > 1) {
+    else if (segments.length > 1) {
         switch (segments[0]) {
             case 'photography':
             case 'programming':
@@ -64,6 +66,11 @@ async function loadPage(path, animation = 'fadeinleft', scrollY = 0, initialLoad
         }
         appContainer.setAttribute('data-animation', exitAnimation);
         await new Promise(r => setTimeout(r, 710));
+        if (menuOpen) {
+            menuOpen = false;
+            appContainer.querySelector('#menu').style.display = 'none';
+            appContainer.querySelector('.page>main').style.display = '';
+        }
     }
     else {
         animation = 'fadeinup';
@@ -86,6 +93,12 @@ async function loadPage(path, animation = 'fadeinleft', scrollY = 0, initialLoad
         window.scrollTo(0, 0);
         updateCanonical(``);
     }
+    if (file == 'index') {
+        document.querySelector('body>header>#back-button').style.display = 'none';
+    }
+    else {
+        document.querySelector('body>header>#back-button').style.display = '';
+    }
     try {
         loadEmojis();
         await pageInit();
@@ -94,7 +107,7 @@ async function loadPage(path, animation = 'fadeinleft', scrollY = 0, initialLoad
         console.warn(error);
     }
 }
-function navigateTo(url, back = false) {
+async function navigateTo(url, back = false) {
     let animation = back ? 'fadeinleft' : 'fadeinright';
     let path = window.location.pathname;
     if (path.endsWith('/')) {
@@ -114,7 +127,7 @@ function navigateTo(url, back = false) {
     loadPage(window.location.pathname, animation, 0);
 }
 /**  handle links*/
-document.addEventListener('click', (e) => {
+document.addEventListener('click', async (e) => {
     if (!(e.target instanceof HTMLElement))
         return;
     if (e.target.tagName == 'A' && e.target.hasAttribute('data-link') && e.target.id != 'back-button') {
@@ -124,10 +137,38 @@ document.addEventListener('click', (e) => {
             navigateTo(url);
         return;
     }
-    if (e.target.tagName == 'A' && e.target.id == 'back-button') {
+    else if (e.target.tagName == 'A' && e.target.id == 'back-button') {
         e.preventDefault();
-        window.history.back();
+        const count = Number(sessionStorage.getItem('nav-count') || 0);
+        if ((window._historyIdx ?? 0) > 0) {
+            window.history.back();
+        }
+        else {
+            navigateTo('/', true);
+        }
         return;
+    }
+    else if (e.target.tagName == 'BUTTON' && e.target.id == 'menu-button') {
+        e.preventDefault();
+        let appContainer = document.querySelector('#app');
+        if (!menuOpen) {
+            menuOpen = true;
+            menuScrollPos = window.scrollY;
+            appContainer.dataset.animation = 'fadeoutdown';
+            await new Promise(r => setTimeout(r, 710));
+            appContainer.querySelector('.page>main').style.display = 'none';
+            appContainer.querySelector('#menu').style.display = '';
+            appContainer.dataset.animation = 'fadeindown';
+        }
+        else {
+            menuOpen = false;
+            appContainer.dataset.animation = 'fadeoutup';
+            await new Promise(r => setTimeout(r, 710));
+            appContainer.querySelector('#menu').style.display = 'none';
+            appContainer.querySelector('.page>main').style.display = '';
+            appContainer.dataset.animation = 'fadeinup';
+            window.scrollTo(0, menuScrollPos);
+        }
     }
 });
 window.addEventListener('popstate', (event) => {

@@ -1,0 +1,83 @@
+:root {
+    --header-height: 5rem
+}
+
+
+header {
+    height: var(--header-height);
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 2rem 4rem 1rem 4rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+header #menu-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+header #menu-button * {
+    pointer-events: none;
+}
+
+header #back-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transform: rotate(90deg);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+header #back-button * {
+    pointer-events: none;
+}
+
+#menu {
+    height: calc(100vh - var(--header-height));
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+    overflow: auto;
+}
+
+#menu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+#menu ul li {
+    list-style-type: none;
+}
+
+
+#menu ul li * {
+    -webkit-user-select: none;
+    user-select: none;
+    font-size: 2rem;
+    font-weight: 200;
+    color: #fff;
+}

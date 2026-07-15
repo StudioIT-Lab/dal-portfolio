@@ -56,6 +56,24 @@ a * {
     animation-timing-function: cubic-bezier(0, 0.27, 0.39, 1.01);
 }
 
+[data-animation="fadeindown"] {
+    opacity: 0;
+    animation-name: fadeindown;
+    animation-timing-function: cubic-bezier(0, 0.27, 0.39, 1.01);
+}
+
+[data-animation="fadeoutup"] {
+    opacity: 0;
+    animation-name: fadeoutup;
+    animation-timing-function: cubic-bezier(.61, -0.01, 1, .73);
+}
+
+[data-animation="fadeoutdown"] {
+    opacity: 0;
+    animation-name: fadeoutdown;
+    animation-timing-function: cubic-bezier(.61, -0.01, 1, .73);
+}
+
 [data-animation="fadeinleft"] {
     opacity: 0;
     animation-name: fadeinleft;
@@ -89,6 +107,42 @@ a * {
     100% {
         opacity: 1;
         top: 0vh;
+    }
+}
+
+@keyframes fadeindown {
+    0% {
+        opacity: 0;
+        top: -15vh
+    }
+
+    100% {
+        opacity: 1;
+        top: 0vh;
+    }
+}
+
+@keyframes fadeoutup {
+    0% {
+        opacity: 1;
+        top: 0vh
+    }
+
+    100% {
+        opacity: 0;
+        top: -15vh;
+    }
+}
+
+@keyframes fadeoutdown {
+    0% {
+        opacity: 1;
+        top: 0vh
+    }
+
+    100% {
+        opacity: 0;
+        top: 15vh;
     }
 }
 

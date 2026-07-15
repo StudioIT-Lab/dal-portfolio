@@ -1,4 +1,4 @@
-#page-projects {
+#page-projectdetail {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -9,19 +9,114 @@
 
 
 
-#page-projects main {
+#page-projectdetail main {
     height: calc(100vh - var(--header-height));
     width: 100%;
     position: absolute;
     bottom: 0;
     left: 0;
 
-    display: grid;
-    /* create responsive columns that keep card width consistent */
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    justify-items: center;
-    align-content: start;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     padding: 2rem;
-    gap: 3rem;
+    gap: 2rem;
     overflow: auto;
+}
+
+
+#page-projectdetail .leftcol {
+    width: 40%;
+    height: calc(100vh - var(--header-height) - 4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+    background-color: #f006;
+}
+
+#page-projectdetail .rightcol {
+    width: 60%;
+    height: 100%;
+    background-color: #0f06;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+#page-projectdetail .rightcol * {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+
+#page-projectdetail .leftcol .media {
+    width: 100%;
+    min-height: 70%;
+    background-color: #00f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#page-projectdetail .leftcol .media .mediaview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: #0006;
+}
+
+#page-projectdetail .leftcol .media .mediacontrols {
+    width: 100%;
+    height: 3rem;
+    background-color: #fff6;
+    display: flex;
+}
+
+
+#page-projectdetail .leftcol .links {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+#page-projectdetail .leftcol .links .assoc-link,
+#page-projectdetail .leftcol .links .assoc-info {
+    width: 100%;
+    height: 3rem;
+    background-color: #0003;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 200;
+}
+
+#page-projectdetail .leftcol .links .assoc-info,
+#page-projectdetail .leftcol .links .assoc-info p {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+#page-projectdetail .leftcol .links .assoc-link img,
+#page-projectdetail .leftcol .links .assoc-info img {
+    aspect-ratio: 1;
+    height: 100%;
 }
